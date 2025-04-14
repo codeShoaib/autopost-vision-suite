@@ -1,27 +1,25 @@
 
-# AutoPost Chatbot
+# 🚀 AutoPost Chatbot
+
+A powerful social media management platform that enables users to generate AI-powered content, schedule posts across multiple platforms, and track engagement analytics - all from a single dashboard.
 
 ![AutoPost Banner](https://i.imgur.com/example.png)
 
-## 🚀 Project Overview
+## ✨ Features
 
-AutoPost Chatbot is a powerful social media management platform that enables users to generate AI-powered content, schedule posts across multiple platforms, and track engagement analytics - all from a single dashboard.
-
-### Key Features
-
-- 🤖 AI-powered content generation for text and images
-- 📅 Advanced post scheduling with calendar integration
-- 📊 Cross-platform analytics and performance tracking
-- 🔄 Seamless publishing to Twitter, LinkedIn, and Facebook
+- 🤖 **AI-powered content generation** for text and images
+- 📅 **Advanced post scheduling** with calendar integration
+- 📊 **Cross-platform analytics** and performance tracking
+- 🔄 **Seamless publishing** to Twitter, LinkedIn, and Facebook
 
 ## 💻 Tech Stack
 
 - **Frontend**: React, TypeScript, Tailwind CSS, shadcn/ui
-- **State Management**: React Context API
+- **State Management**: Zustand
 - **UI Components**: Custom components with Tailwind
 - **Data Visualization**: Recharts
-- **Backend** (planned): Supabase for authentication and data storage
-- **AI Integration** (planned): OpenRouter API for text generation, Replicate API for image generation
+- **Backend**: Supabase for authentication and data storage
+- **AI Integration**: OpenRouter API for text generation, Replicate API for image generation
 
 ## 🛠️ Getting Started
 
@@ -45,40 +43,52 @@ npm install
 yarn install
 ```
 
-3. Start the development server
+3. Set up environment variables
+   - Copy `.env.example` to `.env.local`
+   - Add your API keys for OpenRouter and Replicate
+   - Configure Supabase settings if using
+
+```bash
+cp .env.example .env.local
+```
+
+4. Start the development server
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+5. Open your browser and navigate to `http://localhost:5173`
 
-## 📝 Environment Variables
+## 📝 Usage Guide
 
-Copy `.env.example` to `.env.local` and fill in the required values:
+### Generating and Scheduling a Post
 
-```
-VITE_SUPABASE_URL=your-supabase-url
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
+1. **Create Content**:
+   - Navigate to the 'Create Post' page
+   - Write your post content or use AI assistance by clicking "AI Suggestions"
+   - Generate a relevant image by clicking "Generate Image with AI"
 
-## 🔧 Usage
+2. **Configure Post Settings**:
+   - Select social media platforms (Twitter, LinkedIn, Facebook)
+   - Choose scheduling options (specific date/time or optimal posting time)
 
-1. **Dashboard** - View your post performance and scheduled content
-2. **Create Post** - Generate AI content and schedule posts
-3. **Calendar** - Manage your content calendar
-4. **Analytics** - Track engagement across platforms
-5. **Connections** - Manage your social media account connections
-6. **Settings** - Configure your account preferences
+3. **Schedule or Publish**:
+   - Click "Schedule Post" to add it to your content calendar
+   - Monitor scheduled posts from the Dashboard
 
-## 🔮 Planned Features
+4. **Track Performance**:
+   - Visit the Analytics page to monitor engagement across platforms
+   - View detailed metrics for each post
 
-- Integration with OpenAI for advanced content generation
-- Custom branding options
-- Team collaboration features
+## 🔮 Future Roadmap
+
+- Advanced AI personalization for platform-specific content
+- Team collaboration features with role-based permissions
+- Custom branding and white-label options
 - Advanced analytics with custom reporting
-- Mobile application
+- Mobile application for on-the-go management
 
 ## 🤝 Contributing
 

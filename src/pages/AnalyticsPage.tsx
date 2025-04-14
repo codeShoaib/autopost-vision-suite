@@ -2,7 +2,6 @@
 import React from 'react';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, LineChart, PieChart } from '@/components/ui/chart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowUpRight, Users, BarChart3, TrendingUp } from 'lucide-react';
 import * as Recharts from 'recharts';
@@ -45,7 +44,7 @@ const AnalyticsPage = () => {
     <MainLayout>
       <div className="space-y-8 animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold mb-2 gradient-text">Analytics Dashboard</h1>
+          <h1 className="text-3xl font-bold mb-2 text-gradient-primary">Analytics Dashboard</h1>
           <p className="text-muted-foreground">
             Monitor your social media performance across platforms.
           </p>
@@ -54,7 +53,7 @@ const AnalyticsPage = () => {
         {/* Key metrics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {data.metrics.map((metric, index) => (
-            <Card key={index} className="card-gradient">
+            <Card key={index} className="card-gradient hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
                 <div className="flex justify-between items-start">
                   <div>
@@ -74,7 +73,7 @@ const AnalyticsPage = () => {
         </div>
         
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList>
+          <TabsList className="mb-4">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="engagement">Engagement</TabsTrigger>
             <TabsTrigger value="followers">Followers</TabsTrigger>
@@ -90,20 +89,22 @@ const AnalyticsPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <PieChart>
-                    <Recharts.Pie
-                      data={data.performance}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={100}
-                      fill="#8b5cf6"
-                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                    />
-                    <Recharts.Tooltip formatter={(value) => `${value}%`} />
-                    <Recharts.Legend />
-                  </PieChart>
+                  <Recharts.ResponsiveContainer width="100%" height="100%">
+                    <Recharts.PieChart>
+                      <Recharts.Pie
+                        data={data.performance}
+                        dataKey="value"
+                        nameKey="name"
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={100}
+                        fill="#8b5cf6"
+                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      />
+                      <Recharts.Tooltip formatter={(value) => `${value}%`} />
+                      <Recharts.Legend />
+                    </Recharts.PieChart>
+                  </Recharts.ResponsiveContainer>
                 </div>
               </CardContent>
             </Card>
@@ -119,17 +120,18 @@ const AnalyticsPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <BarChart>
-                    <Recharts.CartesianGrid strokeDasharray="3 3" />
-                    <Recharts.XAxis dataKey="name" />
-                    <Recharts.YAxis />
-                    <Recharts.Tooltip />
-                    <Recharts.Legend />
-                    <Recharts.Bar dataKey="twitter" fill="#1DA1F2" name="Twitter" />
-                    <Recharts.Bar dataKey="linkedin" fill="#0A66C2" name="LinkedIn" />
-                    <Recharts.Bar dataKey="facebook" fill="#1877F2" name="Facebook" />
-                    <Recharts.BarChart data={data.engagement} />
-                  </BarChart>
+                  <Recharts.ResponsiveContainer width="100%" height="100%">
+                    <Recharts.BarChart data={data.engagement}>
+                      <Recharts.CartesianGrid strokeDasharray="3 3" />
+                      <Recharts.XAxis dataKey="name" />
+                      <Recharts.YAxis />
+                      <Recharts.Tooltip />
+                      <Recharts.Legend />
+                      <Recharts.Bar dataKey="twitter" fill="#1DA1F2" name="Twitter" />
+                      <Recharts.Bar dataKey="linkedin" fill="#0A66C2" name="LinkedIn" />
+                      <Recharts.Bar dataKey="facebook" fill="#1877F2" name="Facebook" />
+                    </Recharts.BarChart>
+                  </Recharts.ResponsiveContainer>
                 </div>
               </CardContent>
             </Card>
@@ -145,23 +147,24 @@ const AnalyticsPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <LineChart>
-                    <Recharts.CartesianGrid strokeDasharray="3 3" />
-                    <Recharts.XAxis dataKey="name" />
-                    <Recharts.YAxis />
-                    <Recharts.Tooltip />
-                    <Recharts.Legend />
-                    <Recharts.Line 
-                      type="monotone" 
-                      dataKey="followers" 
-                      stroke="#8b5cf6" 
-                      name="Followers"
-                      strokeWidth={2}
-                      dot={{ r: 4 }}
-                      activeDot={{ r: 6 }}
-                      data={data.growth}
-                    />
-                  </LineChart>
+                  <Recharts.ResponsiveContainer width="100%" height="100%">
+                    <Recharts.LineChart data={data.growth}>
+                      <Recharts.CartesianGrid strokeDasharray="3 3" />
+                      <Recharts.XAxis dataKey="name" />
+                      <Recharts.YAxis />
+                      <Recharts.Tooltip />
+                      <Recharts.Legend />
+                      <Recharts.Line 
+                        type="monotone" 
+                        dataKey="followers" 
+                        stroke="#8b5cf6" 
+                        name="Followers"
+                        strokeWidth={2}
+                        dot={{ r: 4 }}
+                        activeDot={{ r: 6 }}
+                      />
+                    </Recharts.LineChart>
+                  </Recharts.ResponsiveContainer>
                 </div>
               </CardContent>
             </Card>

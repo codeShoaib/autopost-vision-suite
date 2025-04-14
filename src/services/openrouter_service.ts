@@ -11,6 +11,12 @@ interface OpenRouterResponse {
     index: number;
     finish_reason: string;
   }[];
+  model: string;
+  usage: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
 }
 
 // Define parameters for text generation
@@ -25,14 +31,21 @@ interface GenerationParams {
 export async function generateText(params: GenerationParams): Promise<string> {
   const { prompt, platform = 'twitter', tone = 'professional', maxLength = 280 } = params;
   
-  // In a real implementation, this would make an actual API call
-  // For now, we'll mock the response
-  console.log(`Generating text for: ${prompt} (${platform}, ${tone})`);
+  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
   
-  // Mock API call - in production, this would be a fetch to OpenRouter
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Mock different responses based on platform and tone
+  if (!apiKey) {
+    console.error("OpenRouter API key is missing. Add VITE_OPENROUTER_API_KEY to your .env.local file");
+    return "Error: API key is missing. Please check your environment variables.";
+  }
+  
+  try {
+    // Construct the prompt with platform and tone guidance
+    const enhancedPrompt = `Write a ${tone} social media post for ${platform} about: ${prompt}. Keep it under ${maxLength} characters.`;
+    
+    // In production, make a real API call to OpenRouter
+    // For development without API key, use mock responses
+    if (apiKey === 'your-openrouter-api-key') {
+      // Mock responses based on platform and tone (same as before)
       const responses = {
         twitter: {
           professional: `Excited to announce our latest product update! Check out how we're improving user experience and delivering more value. #Innovation #ProductUpdate`,
@@ -51,9 +64,45 @@ export async function generateText(params: GenerationParams): Promise<string> {
         }
       };
       
-      resolve(responses[platform][tone]);
-    }, 1000);
-  });
+      return responses[platform][tone];
+    }
+    
+    // Real API call to OpenRouter
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'HTTP-Referer': window.location.origin,
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: `You are an expert social media content creator. Write content for ${platform} in a ${tone} tone.`
+          },
+          {
+            role: 'user',
+            content: enhancedPrompt
+          }
+        ],
+        max_tokens: Math.min(maxLength, 1000),
+      })
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'Unknown error');
+    }
+    
+    const data = await response.json();
+    return data.choices[0].message.content.trim();
+    
+  } catch (error) {
+    console.error('Error generating text:', error);
+    return `Failed to generate text: ${error instanceof Error ? error.message : 'Unknown error'}`;
+  }
 }
 
 export default {
