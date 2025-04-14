@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { BarChart, LineChart, PieChart } from '@/components/ui/chart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowUpRight, Users, BarChart3, TrendingUp } from 'lucide-react';
+import * as Recharts from 'recharts';
 
 const AnalyticsPage = () => {
   // Sample analytics data
@@ -89,12 +90,20 @@ const AnalyticsPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <PieChart
-                    data={data.performance}
-                    nameKey="name"
-                    dataKey="value"
-                    valueFormatter={(value) => `${value}%`}
-                  />
+                  <PieChart>
+                    <Recharts.Pie
+                      data={data.performance}
+                      dataKey="value"
+                      nameKey="name"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      fill="#8b5cf6"
+                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    />
+                    <Recharts.Tooltip formatter={(value) => `${value}%`} />
+                    <Recharts.Legend />
+                  </PieChart>
                 </div>
               </CardContent>
             </Card>
@@ -110,19 +119,16 @@ const AnalyticsPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <BarChart
-                    data={data.engagement}
-                    xAxisDataKey="name"
-                    style={{ fontSize: '12px' }}
-                  >
-                    <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" />
-                    <RechartsPrimitive.XAxis dataKey="name" />
-                    <RechartsPrimitive.YAxis />
-                    <RechartsPrimitive.Tooltip />
-                    <RechartsPrimitive.Legend />
-                    <RechartsPrimitive.Bar dataKey="twitter" fill="#1DA1F2" name="Twitter" />
-                    <RechartsPrimitive.Bar dataKey="linkedin" fill="#0A66C2" name="LinkedIn" />
-                    <RechartsPrimitive.Bar dataKey="facebook" fill="#1877F2" name="Facebook" />
+                  <BarChart>
+                    <Recharts.CartesianGrid strokeDasharray="3 3" />
+                    <Recharts.XAxis dataKey="name" />
+                    <Recharts.YAxis />
+                    <Recharts.Tooltip />
+                    <Recharts.Legend />
+                    <Recharts.Bar dataKey="twitter" fill="#1DA1F2" name="Twitter" />
+                    <Recharts.Bar dataKey="linkedin" fill="#0A66C2" name="LinkedIn" />
+                    <Recharts.Bar dataKey="facebook" fill="#1877F2" name="Facebook" />
+                    <Recharts.BarChart data={data.engagement} />
                   </BarChart>
                 </div>
               </CardContent>
@@ -139,17 +145,13 @@ const AnalyticsPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="h-80">
-                  <LineChart
-                    data={data.growth}
-                    xAxisDataKey="name"
-                    style={{ fontSize: '12px' }}
-                  >
-                    <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" />
-                    <RechartsPrimitive.XAxis dataKey="name" />
-                    <RechartsPrimitive.YAxis />
-                    <RechartsPrimitive.Tooltip />
-                    <RechartsPrimitive.Legend />
-                    <RechartsPrimitive.Line 
+                  <LineChart>
+                    <Recharts.CartesianGrid strokeDasharray="3 3" />
+                    <Recharts.XAxis dataKey="name" />
+                    <Recharts.YAxis />
+                    <Recharts.Tooltip />
+                    <Recharts.Legend />
+                    <Recharts.Line 
                       type="monotone" 
                       dataKey="followers" 
                       stroke="#8b5cf6" 
@@ -157,6 +159,7 @@ const AnalyticsPage = () => {
                       strokeWidth={2}
                       dot={{ r: 4 }}
                       activeDot={{ r: 6 }}
+                      data={data.growth}
                     />
                   </LineChart>
                 </div>
