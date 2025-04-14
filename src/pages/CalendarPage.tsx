@@ -34,7 +34,7 @@ const CalendarPage = () => {
     // This would normally fetch from an API
     return [
       { id: 1, time: '09:00 AM', platform: 'Twitter', content: 'Exciting news coming today! Stay tuned for our announcement. #innovation' },
-      { id: 2, time: '12:30 PM', platform: 'LinkedIn', content: 'We're thrilled to share our latest product update that enhances user experience.' },
+      { id: 2, time: '12:30 PM', platform: 'LinkedIn', content: 'We\'re thrilled to share our latest product update that enhances user experience.' },
       { id: 3, time: '04:00 PM', platform: 'Facebook', content: 'Join us for a live Q&A session with our product team this Friday!' },
     ];
   };
