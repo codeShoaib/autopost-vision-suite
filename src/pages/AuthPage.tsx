@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { AuthForm } from '@/components/auth/AuthForm';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
 const AuthPage = () => {
   const navigate = useNavigate();
