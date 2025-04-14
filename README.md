@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
 
-## Project info
+# AutoPost Chatbot
 
-**URL**: https://lovable.dev/projects/9d1407bf-0233-43cb-9d5b-7b79d6ad02c8
+![AutoPost Banner](https://i.imgur.com/example.png)
 
-## How can I edit this code?
+## 🚀 Project Overview
 
-There are several ways of editing your application.
+AutoPost Chatbot is a powerful social media management platform that enables users to generate AI-powered content, schedule posts across multiple platforms, and track engagement analytics - all from a single dashboard.
 
-**Use Lovable**
+### Key Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9d1407bf-0233-43cb-9d5b-7b79d6ad02c8) and start prompting.
+- 🤖 AI-powered content generation for text and images
+- 📅 Advanced post scheduling with calendar integration
+- 📊 Cross-platform analytics and performance tracking
+- 🔄 Seamless publishing to Twitter, LinkedIn, and Facebook
 
-Changes made via Lovable will be committed automatically to this repo.
+## 💻 Tech Stack
 
-**Use your preferred IDE**
+- **Frontend**: React, TypeScript, Tailwind CSS, shadcn/ui
+- **State Management**: React Context API
+- **UI Components**: Custom components with Tailwind
+- **Data Visualization**: Recharts
+- **Backend** (planned): Supabase for authentication and data storage
+- **AI Integration** (planned): OpenRouter API for text generation, Replicate API for image generation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js (v16+)
+- npm or yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/autopost-chatbot.git
+cd autopost-chatbot
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-**Use GitHub Codespaces**
+4. Open your browser and navigate to `http://localhost:3000`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📝 Environment Variables
 
-## What technologies are used for this project?
+Copy `.env.example` to `.env.local` and fill in the required values:
 
-This project is built with:
+```
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🔧 Usage
 
-## How can I deploy this project?
+1. **Dashboard** - View your post performance and scheduled content
+2. **Create Post** - Generate AI content and schedule posts
+3. **Calendar** - Manage your content calendar
+4. **Analytics** - Track engagement across platforms
+5. **Connections** - Manage your social media account connections
+6. **Settings** - Configure your account preferences
 
-Simply open [Lovable](https://lovable.dev/projects/9d1407bf-0233-43cb-9d5b-7b79d6ad02c8) and click on Share -> Publish.
+## 🔮 Planned Features
 
-## Can I connect a custom domain to my Lovable project?
+- Integration with OpenAI for advanced content generation
+- Custom branding options
+- Team collaboration features
+- Advanced analytics with custom reporting
+- Mobile application
 
-Yes, you can!
+## 🤝 Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/autopost-chatbot/issues).
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
