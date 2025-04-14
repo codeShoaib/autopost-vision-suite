@@ -64,11 +64,15 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				brand: {
-					purple: '#8B5CF6',
-					indigo: '#4F46E5',
-					teal: '#06B6D4',
-					success: '#10B981',
-					warning: '#F97316',
+					purple: '#7c3aed',
+					indigo: '#4338ca',
+					teal: '#0891b2',
+					success: '#10b981',
+					warning: '#f97316',
+					violet: '#8b5cf6',
+					emerald: '#10b981',
+					cyan: '#06b6d4',
+					pink: '#ec4899',
 				},
 			},
 			borderRadius: {
@@ -110,7 +114,10 @@ export default {
 				'fade-in': 'fade-in 0.3s ease-out',
 			},
 			backgroundImage: {
-				'gradient-primary': 'linear-gradient(to right, #8B5CF6, #4F46E5)',
+				'gradient-primary': 'linear-gradient(to right, #7c3aed, #4338ca)',
+				'gradient-secondary': 'linear-gradient(to right, #8b5cf6, #6d28d9)',
+				'gradient-success': 'linear-gradient(to right, #10b981, #059669)',
+				'gradient-warning': 'linear-gradient(to right, #f97316, #ea580c)',
 			},
 		}
 	},

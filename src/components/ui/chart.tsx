@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 import { BarChart as RechartsBarChart } from "recharts"
@@ -356,9 +357,33 @@ function getPayloadConfigFromPayload(
     : config[key as keyof typeof config]
 }
 
+// Default chart configuration
+const defaultChartConfig: ChartConfig = {
+  twitter: { 
+    label: 'Twitter',
+    color: '#1DA1F2' 
+  },
+  linkedin: { 
+    label: 'LinkedIn',
+    color: '#0A66C2' 
+  },
+  facebook: { 
+    label: 'Facebook',
+    color: '#1877F2' 
+  },
+  followers: {
+    label: 'Followers',
+    color: '#8b5cf6'
+  },
+  value: {
+    label: 'Value',
+    color: '#3b82f6'
+  }
+}
+
 export const BarChart: React.FC<React.ComponentProps<typeof RechartsBarChart>> = (props) => {
   return (
-    <ChartContainer>
+    <ChartContainer config={defaultChartConfig}>
       <RechartsPrimitive.BarChart {...props}>
         <ChartTooltipContent />
         <ChartLegendContent />
@@ -369,7 +394,7 @@ export const BarChart: React.FC<React.ComponentProps<typeof RechartsBarChart>> =
 
 export const LineChart: React.FC<React.ComponentProps<typeof RechartsLineChart>> = (props) => {
   return (
-    <ChartContainer>
+    <ChartContainer config={defaultChartConfig}>
       <RechartsPrimitive.LineChart {...props}>
         <ChartTooltipContent />
         <ChartLegendContent />
@@ -380,7 +405,7 @@ export const LineChart: React.FC<React.ComponentProps<typeof RechartsLineChart>>
 
 export const PieChart: React.FC<React.ComponentProps<typeof RechartsCirclePieChart>> = (props) => {
   return (
-    <ChartContainer>
+    <ChartContainer config={defaultChartConfig}>
       <RechartsPrimitive.PieChart {...props}>
         <ChartTooltipContent />
         <ChartLegendContent />

@@ -91,10 +91,9 @@ const AnalyticsPage = () => {
                 <div className="h-80">
                   <PieChart
                     data={data.performance}
-                    index="name"
-                    categories={['value']}
+                    nameKey="name"
+                    dataKey="value"
                     valueFormatter={(value) => `${value}%`}
-                    colors={['#3b82f6', '#0ea5e9', '#38bdf8']}
                   />
                 </div>
               </CardContent>
@@ -113,14 +112,18 @@ const AnalyticsPage = () => {
                 <div className="h-80">
                   <BarChart
                     data={data.engagement}
-                    index="name"
-                    categories={['twitter', 'linkedin', 'facebook']}
-                    colors={['#1DA1F2', '#0A66C2', '#1877F2']}
-                    valueFormatter={(value) => `${value} engagements`}
-                    style={{
-                      fontSize: '12px',
-                    }}
-                  />
+                    xAxisDataKey="name"
+                    style={{ fontSize: '12px' }}
+                  >
+                    <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" />
+                    <RechartsPrimitive.XAxis dataKey="name" />
+                    <RechartsPrimitive.YAxis />
+                    <RechartsPrimitive.Tooltip />
+                    <RechartsPrimitive.Legend />
+                    <RechartsPrimitive.Bar dataKey="twitter" fill="#1DA1F2" name="Twitter" />
+                    <RechartsPrimitive.Bar dataKey="linkedin" fill="#0A66C2" name="LinkedIn" />
+                    <RechartsPrimitive.Bar dataKey="facebook" fill="#1877F2" name="Facebook" />
+                  </BarChart>
                 </div>
               </CardContent>
             </Card>
@@ -138,14 +141,24 @@ const AnalyticsPage = () => {
                 <div className="h-80">
                   <LineChart
                     data={data.growth}
-                    index="name"
-                    categories={['followers']}
-                    colors={['#8b5cf6']}
-                    valueFormatter={(value) => `${value} followers`}
-                    style={{
-                      fontSize: '12px',
-                    }}
-                  />
+                    xAxisDataKey="name"
+                    style={{ fontSize: '12px' }}
+                  >
+                    <RechartsPrimitive.CartesianGrid strokeDasharray="3 3" />
+                    <RechartsPrimitive.XAxis dataKey="name" />
+                    <RechartsPrimitive.YAxis />
+                    <RechartsPrimitive.Tooltip />
+                    <RechartsPrimitive.Legend />
+                    <RechartsPrimitive.Line 
+                      type="monotone" 
+                      dataKey="followers" 
+                      stroke="#8b5cf6" 
+                      name="Followers"
+                      strokeWidth={2}
+                      dot={{ r: 4 }}
+                      activeDot={{ r: 6 }}
+                    />
+                  </LineChart>
                 </div>
               </CardContent>
             </Card>
