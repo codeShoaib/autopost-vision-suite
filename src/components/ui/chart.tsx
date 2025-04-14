@@ -1,5 +1,8 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
+import { BarChart as RechartsBarChart } from "recharts"
+import { LineChart as RechartsLineChart } from "recharts"
+import { PieChart as RechartsCirclePieChart } from "recharts"
 
 import { cn } from "@/lib/utils"
 
@@ -351,6 +354,39 @@ function getPayloadConfigFromPayload(
   return configLabelKey in config
     ? config[configLabelKey]
     : config[key as keyof typeof config]
+}
+
+export const BarChart: React.FC<React.ComponentProps<typeof RechartsBarChart>> = (props) => {
+  return (
+    <ChartContainer>
+      <RechartsPrimitive.BarChart {...props}>
+        <ChartTooltipContent />
+        <ChartLegendContent />
+      </RechartsPrimitive.BarChart>
+    </ChartContainer>
+  )
+}
+
+export const LineChart: React.FC<React.ComponentProps<typeof RechartsLineChart>> = (props) => {
+  return (
+    <ChartContainer>
+      <RechartsPrimitive.LineChart {...props}>
+        <ChartTooltipContent />
+        <ChartLegendContent />
+      </RechartsPrimitive.LineChart>
+    </ChartContainer>
+  )
+}
+
+export const PieChart: React.FC<React.ComponentProps<typeof RechartsCirclePieChart>> = (props) => {
+  return (
+    <ChartContainer>
+      <RechartsPrimitive.PieChart {...props}>
+        <ChartTooltipContent />
+        <ChartLegendContent />
+      </RechartsPrimitive.PieChart>
+    </ChartContainer>
+  )
 }
 
 export {
