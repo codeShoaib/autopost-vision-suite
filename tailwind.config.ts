@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -73,6 +72,10 @@ export default {
 					emerald: '#10b981',
 					cyan: '#06b6d4',
 					pink: '#ec4899',
+					charcoal: '#2A2E35',
+					darkgray: '#3E4248',
+					lightgray: '#9CA3AF',
+					paper: '#F5F5F5',
 				},
 			},
 			borderRadius: {
@@ -107,15 +110,48 @@ export default {
 						transform: 'translateY(0)'
 					}
 				},
+				'slide-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateX(-20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'scale(0.95)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-5px)'
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
+				'slide-in': 'slide-in 0.3s ease-out',
+				'scale-in': 'scale-in 0.3s ease-out',
+				'float': 'float 3s ease-in-out infinite',
 			},
 			backgroundImage: {
-				'gradient-primary': 'linear-gradient(to right, #7c3aed, #4338ca)',
-				'gradient-secondary': 'linear-gradient(to right, #8b5cf6, #6d28d9)',
+				'gradient-primary': 'linear-gradient(to right, #2A2E35, #3E4248)',
+				'gradient-secondary': 'linear-gradient(to right, #3E4248, #4B5563)',
+				'gradient-dark': 'linear-gradient(to bottom, rgba(42,46,53,0.95), rgba(30,32,37,0.98))',
+				'paper-texture': 'url("/lovable-uploads/7a6a4e7f-ca80-4026-a3de-04c7eab5cfb2.png")',
 				'gradient-success': 'linear-gradient(to right, #10b981, #059669)',
 				'gradient-warning': 'linear-gradient(to right, #f97316, #ea580c)',
 			},

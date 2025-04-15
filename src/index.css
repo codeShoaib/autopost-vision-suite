@@ -5,25 +5,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 262 83.3% 57.8%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --background: 220 5% 12%;
+    --foreground: 220 10% 97%;
+    --card: 220 5% 12%;
+    --card-foreground: 220 10% 97%;
+    --popover: 220 5% 12%;
+    --popover-foreground: 220 10% 97%;
+    --primary: 220 10% 97%;
+    --primary-foreground: 220 5% 10%;
+    --secondary: 220 5% 18%;
+    --secondary-foreground: 220 10% 97%;
+    --muted: 220 5% 18%;
+    --muted-foreground: 220 5% 70%;
+    --accent: 220 5% 18%;
+    --accent-foreground: 220 10% 97%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 262 83.3% 57.8%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 5% 20%;
+    --input: 220 5% 20%;
+    --ring: 220 10% 70%;
     --radius: 0.5rem;
   }
   
@@ -34,6 +34,11 @@
   
   body {
     @apply bg-background text-foreground antialiased;
+    background-image: url('/lovable-uploads/7a6a4e7f-ca80-4026-a3de-04c7eab5cfb2.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-blend-mode: overlay;
   }
 }
 
@@ -43,15 +48,69 @@
   }
   
   .bg-gradient-primary {
-    @apply bg-gradient-to-br from-purple-600 via-indigo-500 to-purple-700;
+    @apply bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900;
   }
   
   .text-gradient-primary {
-    @apply bg-gradient-to-br from-purple-600 via-indigo-500 to-purple-700 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 bg-clip-text text-transparent;
+  }
+  
+  .torn-paper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .torn-paper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background-image: url('/lovable-uploads/7a6a4e7f-ca80-4026-a3de-04c7eab5cfb2.png');
+    background-size: cover;
+    background-position: bottom;
+    mask-image: linear-gradient(to bottom, transparent, black);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+    transform: translateY(7px);
+  }
+  
+  .paper-texture {
+    @apply bg-secondary/60 backdrop-blur-sm border border-white/5;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .paper-texture::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/lovable-uploads/7a6a4e7f-ca80-4026-a3de-04c7eab5cfb2.png');
+    background-size: cover;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -1;
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  }
+  
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-lg border border-white/5 shadow-lg;
   }
   
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
   }
   
   @keyframes fadeIn {
@@ -63,5 +122,35 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-lift:hover {
+    @apply transform -translate-y-1 shadow-lg;
   }
 }
